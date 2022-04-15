@@ -15,20 +15,19 @@
     <div class="content">
         <h1>Biblioteca</h1>
 
-        <h2>Livros</h2>
+        <h2>Leitura</h2>
         <?php
         require 'mysql_server.php';
 
         $conexao = RetornaConexao();
 		
-        $titulo = 'titulo_livro';
-        $autor = 'autor_id';
-        $classificacao = 'classificacao';
+        $livro = 'livro_id';
+        $leitor = 'leitor_id';
         /*TODO-1: Adicione uma variavel para cada coluna */
 
 
         $sql =
-            'SELECT ' . $titulo . ',' . $autor . ',' . $classificacao . '  FROM livro';
+            'SELECT ' . $livro . ',' . $leitor . ' FROM livro_leitor';
 
 
         $resultado = mysqli_query($conexao, $sql);
@@ -41,9 +40,8 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . $titulo . '</th>' .
-            '        <th>' . $autor . '</th>' .
-            '        <th>' . $classificacao . '</th>' .
+            '        <th>' . $livro . '</th>' .
+            '        <th>' . $leitor . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -53,9 +51,8 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
-                echo '<td>' . $registro[$titulo] . '</td>' .
-					 '<td>' . $registro[$autor] . '</td>' .
-					 '<td>' . $registro[$classificacao] . '</td>';
+                echo '<td>' . $registro[$livro] . '</td>' .
+					 '<td>' . $registro[$leitor] . '</td>' ;
                 echo '</tr>';
             }
             echo '</table>';
