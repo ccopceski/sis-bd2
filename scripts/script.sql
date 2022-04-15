@@ -149,6 +149,15 @@ SELECT * FROM leitor;
 SELECT * FROM livro_leitor;
 SELECT * FROM livro_leitor INNER JOIN leitor ON livro_leitor.leitor_id = leitor.leitor_id;
 
-
-
 SELECT * FROM livro LEFT JOIN autor ON (livro.autor_id = autor.autor_id);
+
+SELECT leitor_nome, titulo_livro 
+		FROM livro_leitor AS ll
+        JOIN leitor AS le
+        JOIN livro AS li
+			ON ll.leitor_id = le.leitor_id AND ll.livro_id = li.livro_id;
+            
+ SELECT titulo_livro, autor_nome, classificacao
+		FROM livro AS li
+        JOIN autor AS au
+			ON au.autor_id = li.autor_id

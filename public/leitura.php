@@ -20,15 +20,17 @@
         require 'mysql_server.php';
 
         $conexao = RetornaConexao();
-		
-        $livro = 'livro_id';
-        $leitor = 'leitor_id';
+        
+        $leitor = 'leitor_nome';
+        $livro = 'titulo_livro';
         /*TODO-1: Adicione uma variavel para cada coluna */
 
 
         $sql =
-            'SELECT ' . $livro . ',' . $leitor . ' FROM livro_leitor';
-
+            'SELECT ' . $leitor . ',' . $livro . ' FROM db_app_db2.livro_leitor AS ll' .
+            ' JOIN db_app_db2.leitor AS le' . 
+            ' JOIN db_app_db2.livro AS li' . 
+            ' ON ll.leitor_id = le.leitor_id AND ll.livro_id = li.livro_id';
 
         $resultado = mysqli_query($conexao, $sql);
         if (!$resultado) {
@@ -40,8 +42,8 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . $livro . '</th>' .
             '        <th>' . $leitor . '</th>' .
+            '        <th>' . $livro . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -51,8 +53,8 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
-                echo '<td>' . $registro[$livro] . '</td>' .
-					 '<td>' . $registro[$leitor] . '</td>' ;
+                echo '<td>' . $registro[$leitor] . '</td>' .
+					 '<td>' . $registro[$livro] . '</td>' ;
                 echo '</tr>';
             }
             echo '</table>';

@@ -22,13 +22,15 @@
         $conexao = RetornaConexao();
 		
         $titulo = 'titulo_livro';
-        $autor = 'autor_id';
+        $autor = 'autor_nome';
         $classificacao = 'classificacao';
         /*TODO-1: Adicione uma variavel para cada coluna */
 
 
         $sql =
-            'SELECT ' . $titulo . ',' . $autor . ',' . $classificacao . '  FROM livro';
+            'SELECT ' . $titulo . ',' . $autor . ',' . $classificacao . '  FROM livro AS li' . 
+            ' JOIN autor AS au' .
+            ' ON au.autor_id = li.autor_id';
 
 
         $resultado = mysqli_query($conexao, $sql);
