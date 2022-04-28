@@ -7,6 +7,11 @@ DROP TABLE autor;
 -- CRIAÇÕES
 -- CRIAÇÕES
 
+-- PENDÊNCIAS:
+-- Falta trocar o nome da tabela livro_leitor para leitura
+-- Falta a tabela biblioteca
+-- Falta criar o auto-relacionamento (Amizade)
+
 CREATE TABLE autor						(autor_id					INT AUTO_INCREMENT PRIMARY KEY,
 										autor_nome					VARCHAR (100)
                                         );
