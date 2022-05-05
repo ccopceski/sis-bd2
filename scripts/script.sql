@@ -11,7 +11,6 @@ DROP TABLE biblioteca;
 -- CRIAÇÕES
 
 -- PENDÊNCIAS
--- Falta a tabela biblioteca - Não entendi a lógica, parece que vai ficar igual a tabela leitura
 -- Falta criar o auto-relacionamento (Amizade)
 
 CREATE TABLE autor						(autor_id							INT AUTO_INCREMENT PRIMARY KEY,
