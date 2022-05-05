@@ -1,3 +1,5 @@
+USE db_app_db2;
+
 DROP TABLE livro;
 DROP TABLE leitor;
 DROP TABLE livro_leitor;
@@ -29,7 +31,7 @@ CREATE TABLE leitor						(leitor_id					INT AUTO_INCREMENT PRIMARY KEY,
 										
 
 
-CREATE TABLE livro_leitor				(livro_id					INT,
+CREATE TABLE leitura					(livro_id					INT,
 										leitor_id					INT,
 										CONSTRAINT livro_id_fk 		FOREIGN KEY (livro_id) 	REFERENCES livro 	(livro_id),
 										CONSTRAINT leitor_id_fk 	FOREIGN KEY (leitor_id) REFERENCES leitor 	(leitor_id)
@@ -127,21 +129,21 @@ INSERT INTO leitor						(leitor_nome
 										);
 
 
-INSERT INTO livro_leitor				(livro_id,
+INSERT INTO leitura						(livro_id,
 										leitor_id
 										) VALUES	
                                         (1,
                                         1
 										);
 
-INSERT INTO livro_leitor				(livro_id,
+INSERT INTO leitura						(livro_id,
 										leitor_id
 										) VALUES	
                                         (2,
                                         2
 										);
 
-INSERT INTO livro_leitor				(livro_id,
+INSERT INTO leitura						(livro_id,
 										leitor_id
 										) VALUES	
                                         (5,
@@ -151,13 +153,13 @@ INSERT INTO livro_leitor				(livro_id,
 SELECT * FROM livro;
 SELECT * FROM autor;
 SELECT * FROM leitor;
-SELECT * FROM livro_leitor;
-SELECT * FROM livro_leitor INNER JOIN leitor ON livro_leitor.leitor_id = leitor.leitor_id;
+SELECT * FROM leitura;
+SELECT * FROM leitura INNER JOIN leitor ON leitura.leitor_id = leitor.leitor_id;
 
 SELECT * FROM livro LEFT JOIN autor ON (livro.autor_id = autor.autor_id);
 
 SELECT leitor_nome, titulo_livro 
-		FROM livro_leitor AS ll
+		FROM leitura AS ll
         JOIN leitor AS le
         JOIN livro AS li
 			ON ll.leitor_id = le.leitor_id AND ll.livro_id = li.livro_id;

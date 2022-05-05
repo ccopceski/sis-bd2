@@ -27,7 +27,7 @@
 
 
         $sql =
-            'SELECT ' . $leitor . ',' . $livro . ' FROM db_app_db2.livro_leitor AS ll' .
+            'SELECT ' . $leitor . ',' . $livro . ' FROM db_app_db2.leitura AS ll' .
             ' JOIN db_app_db2.leitor AS le' . 
             ' JOIN db_app_db2.livro AS li' . 
             ' ON ll.leitor_id = le.leitor_id AND ll.livro_id = li.livro_id';
