@@ -9,8 +9,7 @@ DROP TABLE autor;
 -- CRIAÇÕES
 -- CRIAÇÕES
 
--- PENDÊNCIAS:
--- Falta trocar o nome da tabela livro_leitor para leitura
+-- PENDÊNCIASS
 -- Falta a tabela biblioteca
 -- Falta criar o auto-relacionamento (Amizade)
 
@@ -37,6 +36,9 @@ CREATE TABLE leitura					(livro_id					INT,
 										CONSTRAINT leitor_id_fk 	FOREIGN KEY (leitor_id) REFERENCES leitor 	(leitor_id)
                                         );
 
+CREATE TABLE biblioteca					(livro_id					INT,
+										leitor_id					INT
+                                        );
 
 
 -- INSERÇÕES
