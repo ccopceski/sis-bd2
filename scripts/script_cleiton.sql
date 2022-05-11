@@ -11,7 +11,7 @@ DROP TABLE biblioteca;
 -- CRIAÇÕES
 
 -- PENDÊNCIAS
--- Falta criar o auto-relacionamento (Amizade)
+-- Falta criar o auto-relacionamento (Amizade) - USAR SELF JOIN
 
 CREATE TABLE autor						(autor_id							INT AUTO_INCREMENT PRIMARY KEY,
 										autor_nome							VARCHAR (100)
@@ -45,6 +45,11 @@ CREATE TABLE biblioteca					(biblioteca_id						INT AUTO_INCREMENT PRIMARY KEY,
 										CONSTRAINT leitor_id_biblio_fk 		FOREIGN KEY (leitor_id) REFERENCES leitor 	(leitor_id)
                                         );
 
+CREATE TABLE amizade					(leitor_id							INT,
+										leitor_id_amigo						INT,
+                                        CONSTRAINT leitor_id_amizade_fk		FOREIGN KEY (leitor_id) 	REFERENCES leitor 	(leitor_id),
+										CONSTRAINT leitor_id_amigo_fk 		FOREIGN KEY (leitor_id_amigo) REFERENCES leitor 	(leitor_id)
+										);
 
 -- INSERÇÕES
 -- INSERÇÕES
@@ -241,12 +246,32 @@ INSERT INTO biblioteca					(categoria,
                                         5,
                                         1 -- CLEITON
                                         );
-                    
+ 
+ INSERT INTO amizade					(leitor_id,
+										leitor_id_amigo	
+                                        ) VALUES
+                                        (1,
+										2
+                                        );
+ 
+  INSERT INTO amizade					(leitor_id,
+										leitor_id_amigo	
+                                        ) VALUES
+                                        (1,
+										3
+                                        );
+ 
+-- CONSULTAS
+-- CONSULTAS
+-- CONSULTAS
+ 
 SELECT * FROM livro;
 SELECT * FROM autor;
 SELECT * FROM leitor;
 SELECT * FROM biblioteca;
 SELECT * FROM leitura;
+SELECT * FROM amizade;
+
 SELECT * FROM leitura INNER JOIN leitor ON leitura.leitor_id = leitor.leitor_id;
 
 SELECT * FROM livro LEFT JOIN autor ON (livro.autor_id = autor.autor_id);
@@ -267,3 +292,24 @@ SELECT leitor_nome, categoria, comentario, titulo_livro
         JOIN biblioteca
         JOIN livro
 			ON livro.livro_id = biblioteca.livro_id AND biblioteca.leitor_id = leitor.leitor_id;
+            
+        
+
+
+
+
+
+
+SELECT leitor_nome
+		FROM amizade AS am
+        JOIN leitor AS le
+			ON am.leitor_id = le.leitor_id ;
+
+
+            
+
+SELECT leitor_nome, titulo_livro
+		FROM leitura AS ll
+        JOIN leitor AS le
+        JOIN livro AS li
+			ON ll.leitor_id = le.leitor_id AND ll.livro_id = li.livro_id;
